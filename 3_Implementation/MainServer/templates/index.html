@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Company</title>
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center">
+        <div class="d-flex flex-column justify-content-between">
+            <div class="card mt-3 p-5">
+                <!-- <div class="logo mb-3"><img src="https://imgur.com/zydrQCr.png"></div> -->
+                <div>
+                    <p class="mb-1">Welcome to</p>
+                    <h4 class="mb-5 text-white">Recruitment Portal!</h4>
+                </div> <button class="btn btn-primary btn-lg"><span>&nbsp;Choose your Position</span> </button>
+            </div>
+            <div class="card two bg-white px-5 py-4 mb-3">
+                <!-- <div class="form-group"><input type="email" class="form-control" id="mail" required><label class="form-control-placeholder" for="mail">Email</label></div>
+            <div class="form-group"><input type="text" class="form-control" id="name" required><label class="form-control-placeholder" for="name">Full Name</label></div>
+            <div class="form-group"><input type="password" class="form-control" id="password" required><label class="form-control-placeholder" for="password">Password</label></div> <button class="btn btn-primary btn-block btn-lg mt-1 mb-2"><span>Get started<i class="fas fa-long-arrow-alt-right ml-2"></i></span></button> -->
+                <form action="/recruiter_login" method="GET">
+                    <input class="btn btn-primary btn-block btn-lg mt-1 mb-2" type="submit" id="ssubmit" name="ssubmit"
+                        value="Recruiter"><br>
+
+                </form>
+                <form action="/candidate_login" method="get">
+                    <input class="btn btn-primary btn-block btn-lg mt-1 mb-2" type="submit" id="fsubmit" name="ssubmit"
+                        value="Candidate">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

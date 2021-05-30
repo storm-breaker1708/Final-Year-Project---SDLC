@@ -1,0 +1,64 @@
+{% extends "candidate/layout.html" %}
+{% block body %}
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+
+        <h4 class="my-4">Dashboard
+          <small>Jobs Applied</small>
+        </h4>
+        {%if jobcounts>0%}
+
+        {%for job in jobs%}
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
+          <div class="card-body">
+            <h2 class="card-title">{{job['title']}}</h2>
+            <p class="card-text">{{job['details']}}<br>Location: {{job['location']}}</p>
+            <a href="/viewjob?job_id={{job['job_id']}}&redirect=0" class="btn btn-primary">View &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on {{job['open_date']}} by
+            <a href="/userprofile?email={{job['postedby']}}">{{job['name']}}</a>
+            Closing Date {{job['close_date']}}
+          </div>
+        </div>
+        {%endfor%}
+        {%else%}
+        <div class="card mb-4">
+          <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
+          <div class="card-body">
+            <h2 class="card-title">Apply for Jobs...</h2>
+          </div>
+        </div>
+        {% endif %}
+        
+
+        
+
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4">
+          <li class="page-item">
+            <a class="page-link" href="/{{old}}">&larr; Older</a>
+          </li>
+          <li class="page-item disabled">
+            <a class="page-link" href="/{{new}}">Newer &rarr;</a>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+  {% endblock %}
+
+
+

@@ -1,0 +1,42 @@
+{% extends "recruiter/layout.html" %}
+{% block body %}
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+
+        <h5 class="my-4">
+          Job View
+        </h5>
+        
+        <div class="card mb-4">
+            <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
+            <div class="card-body">
+              <h2 class="card-title">{{job['title']}}</h2>
+              <p class="card-text"><b>Job ID: </b> {{job['job_id']}} <br> <b>Job Description: </b>{{job['details']}}<br><b>Required Skills: </b> {{job['skills']}} <br><b>Location: </b>{{job['location']}}</p>
+              {%if job['jobstatus']%}
+              <a href="/editjob?job_id={{job['job_id']}}" class="btn btn-primary">Edit Job &rarr;</a>
+              <a href="/closejob?job_id={{job['job_id']}}" class="btn btn-primary">Close Job &rarr;</a>
+              {%endif%}
+              <a href="/applicants?job_id={{job['job_id']}}" class="btn btn-primary">Applicants &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+              Posted on {{job['open_date']}} by
+              <a href="/userprofile">{{job['name']}}</a>
+              Closing Date {{job['close_date']}}
+            </div>
+          </div>
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+  {% endblock %}
+
+
+

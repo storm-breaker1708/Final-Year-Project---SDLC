@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" href="../static/css/addjob.css">
+	<title>Edit Job</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/recruiter_dashboard"><h2>Recruitment Portal</h2></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="navbar-brand exp" href="/addjob">Add Job <i class="fa fa-plus-circle" aria-hidden="true"></i>
+              <!-- <span class="sr-only">(current)</span> -->
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-brand exp" href="/userprofile">Profile <i class="fa fa-user" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-brand exp" href="/logout">Log Out<i class="fa fa-sign-in" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" >{{name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="container"> <div class=" text-center mt-5 ">
+        <h1>Edit Job Post</h1>
+    </div>
+    <div class="row ">
+        <div class="col-lg-7 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form action="/editjob?job_id={{job['job_id']}}" method="POST" id="contact-form" role="form">
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_name">Job Title *</label> <input id="form_name" type="text" name="title" value = "{{job['title']}}" class="form-control" placeholder="Enter Job Title " required="required" data-error="Firstname is required."> </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_lastname">Location *</label> <input id="form_lastname" type="text" name="location" value = "{{job['location']}}" class="form-control" placeholder="Enter the Location " required="required" data-error="Lastname is required."> </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    	<div class="form-group"> <label for="form_opendate">Opening Date *</label> <input id="form_opendate" type="text" name="opening_date" value = "{{job['open_date']}}" class="form-control" placeholder="DD/MM/YYYY " required="required" data-error="Opening Date is required."> </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                       <div class="form-group"> <label for="form_closedate">Closing Date *</label> <input id="form_closedate" type="text" name="closing_date" value = "{{job['close_date']}}" class="form-control" placeholder="DD/MM/YYYY " required="required" data-error="Closing Date is required."> </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group"> <label for="form_message">Job Description *</label> <textarea id="form_message" name="details" class="form-control" placeholder="Write job desciption here." rows="4" required="required" data-error="Please, leave us a message.">{{job['details']}}</textarea> </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group"> <label for="form_message">Skills Required *</label> <textarea id="form_message" name="skills" class="form-control" placeholder="Write skills required here." rows="4" required="required" data-error="Please, leave us a message.">{{job['skills']}}</textarea> </div>
+                                    </div>
+                                    <div class="col-md-12"><button type="submit" class="btn btn-primary btn-send pt-2 btn-block">Save Changes</button>
+                                          </div>
+                                    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  
+<script>
+    $(document).ready(function(){
+    	var minDate = new Date();
+    	$("#form_opendate").datepicker({
+    		showAnim: 'drop',
+    		numberOfMonth: 1,
+    		minDate: minDate,
+    		dateFormat: 'dd/mm/yy',
+    		onClose: function(selectedDate){
+    			$('#form_closedate').datepicker("option","minDate",selectedDate);
+    		}
+    	});
+
+    	$("#form_closedate").datepicker({
+    		showAnim: 'drop',
+    		numberOfMonth: 1,
+    		minDate: minDate,
+    		dateFormat: 'dd/mm/yy',
+    	});
+
+     });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+    "params":
+    {
+        "SENDER_EMAIL":"SENDER_MAIL",
+        "SENDER_PASS":"SENDER_PASS",
+        "admin_username":"udaram",
+        "admin_password":"u",
+        "ip":"172.17.0.1"
+
+    }
+}

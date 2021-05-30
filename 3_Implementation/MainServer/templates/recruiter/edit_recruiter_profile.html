@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <script src="https://use.fontawesome.com/27787fccc5.js"></script>
+
+  <title>Edit Profile</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="../../static/css/candidate_profile.css" rel="stylesheet" id="bootstrap-css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/recuiter_dashboard">Recruitment Portal</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="navbar-brand exp" href="/addjob">Add Job <i class="fa fa-plus-circle" aria-hidden="true"></i>
+              <!-- <span class="sr-only">(current)</span> -->
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-brand exp" href="/userprofile">Profile <i class="fa fa-user" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-brand exp" href="/logout">Log Out<i class="fa fa-sign-in" aria-hidden="true"></i></a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <div class="container emp-profile">
+    <form action="/editprofile" method="POST">
+      <div class="row">
+        <div class="col-md-4">
+
+          <div class="profile-img">
+            <a href="/changephoto">{%if profile['photo']!= None %}
+              <img src="../../static/profile_images/{{profile['photo']}}" alt="Image" />
+              {%else%}
+              <img src="../../static/profile_images/index.jpg" alt="Image" />
+              {%endif%}</a>
+            <div class="file btn btn-lg btn-primary">
+              Change Photo
+              <input type="file" name="file" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="profile-head">
+            <h5>
+              {{profile['name']}}
+            </h5>
+            <h6>
+              {{profile['description']}}
+            </h6>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="profile-work">
+            <div class="tab-content pt-3">
+              <div class="tab-pane active">
+                <form class="form" novalidate="">
+                  <div class="row">
+                    <div class="col">
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Full Name</label>
+                            <input class="form-control" type="text" name="name" placeholder="Your Full Name"
+                              value="{{profile['name']}}">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-group">
+                            <label>One Line Designation</label>
+                            <input class="form-control" type="text" name="description"
+                              placeholder="e.g. Software Engineer" value="{{profile['description']}}">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Phone</label>
+                            <input class="form-control" type="text" placeholder="Your Contact Number" name="contact_no"
+                              value="{{profile['contact_no']}}">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-group">
+                            <label for="sel1">Experience</label>
+                            <select class="form-control" placeholder="Select" id="sel1" name="experience">
+                              <option value="{{profile['experience']}}" disabled selected>Select</option>
+                              <option>0-1 year</option>
+                              <option>2-3 years</option>
+                              <option>3-5 years</option>
+                              <option>5+ years</option>
+                            </select>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Linkedin</label>
+                            <input class="form-control" type="text" name="linkedin" value="{{profile['linkedin']}}"
+                              placeholder="e.g. https://www.linkedin.com/in/raghunandan-chouhan-74524b166/">
+                          </div>
+                        </div>
+
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Address</label>
+                            <input class="form-control" type="text" name="address" value="{{profile['address']}}"
+                              placeholder="City, State, Country">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label>Company Name</label>
+                            <input class="form-control" type="text" name="companyname" value="{{profile['company']}}"
+                              placeholder="e.g. ABC Infotech">
+                          </div>
+                        </div>
+
+                       
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-sm-6 mb-3">
+                      <div class="mb-2"><b><a href="/reset_password/recruiter/{{profile['email']}}">Change
+                            Password</a></b></div>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col d-flex justify-content-end">
+                      <button class="btn btn-primary" type="submit">Save Changes</button>
+                    </div>
+                  </div>
+                </form>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+</body>
+
+</html>
